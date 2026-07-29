@@ -1,0 +1,23 @@
+import pandas as pd
+# Read data
+# text_df = pd.read_csv('Google_data (2b.c1).csv') # Original line causing error
+# excel_df = pd.read_excel('data (2c2).xlsx', sheet_name='Sheet1') # Original line causing error
+
+# Creating sample DataFrames for demonstration purposes
+text_data = {'col1': [1, 2, 3], 'col2': ['A', 'B', 'C']}
+text_df = pd.DataFrame(text_data)
+
+excel_data = {'col_A': [10, 20, 30], 'col_B': ['X', 'Y', 'Z']}
+excel_df = pd.DataFrame(excel_data)
+
+web_df = pd.read_csv( 'https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv') #
+# Replace with actual URL
+# Display data
+print(text_df.head(), "\n", excel_df.head(), "\n", web_df.head())
+# Handle missing values
+text_df.ffill(inplace=True)
+excel_df.bfill(inplace=True)
+web_df.dropna(inplace=True)
+# Save processed data
+text_df.to_csv('processed_text.csv', index=False)
+excel_df.to_excel('processed_excel.xlsx', index=False)
