@@ -1,0 +1,37 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load dataset - replaced with a sample DataFrame for demonstration
+# df = pd.read_csv('iris_dataset(2d).csv') # Original line causing error
+
+# Create a sample DataFrame that mimics the Iris dataset structure
+data = {
+    'sepal length (cm)': np.random.rand(150) * 4 + 3, # Range approx 3-7
+    'sepal width (cm)': np.random.rand(150) * 2 + 2,  # Range approx 2-4
+    'petal length (cm)': np.random.rand(150) * 5 + 1, # Range approx 1-6
+    'petal width (cm)': np.random.rand(150) * 2,
+    'species': ['setosa'] * 50 + ['versicolor'] * 50 + ['virginica'] * 50
+}
+df = pd.DataFrame(data)
+
+# Display basic information and summary statistics
+print("Basic Information:")
+print(df.info())
+print("\nSummary Statistics:")
+print(df.describe())
+# Perform univariate analysis - species count
+print("\nSpecies Count:")
+print(df['species'].value_counts())
+# Visualize data distributions using histograms
+df.hist(figsize=(8, 6), edgecolor='black')
+plt.suptitle('Feature Distributions')
+plt.show()
+# Boxplot for Sepal Length
+sns.boxplot(data=df, x='species', y='sepal length (cm)')
+plt.title('Sepal Length Comparison')
+plt.show()
+# Pairplot to analyze feature relationships
+sns.pairplot(df, hue='species')
+plt.show()
